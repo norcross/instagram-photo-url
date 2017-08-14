@@ -1,0 +1,230 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+strong { font-weight: 700; }
+
+em { font-style: italic; }
+
+html, body {
+	height: 100%;
+}
+
+/*------------------------------------*\
+	$MAIN
+\*------------------------------------*/
+/* GO! */
+::-webkit-input-placeholder {
+	font-style: italic;
+	color:#777;
+	font-weight: 300;
+	font-size: 18px;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+	font-style: italic;
+	color:#777;
+	font-weight: 300;
+	font-size: 18px;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+	font-style: italic;
+	color:#777;
+	font-weight: 300;
+	font-size: 18px;
+}
+
+:-ms-input-placeholder {
+	font-style: italic;
+	color:#777;
+	font-weight: 300;
+	font-size: 18px;
+}
+
+small {
+	font-size: 80%;
+}
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #333;
+	line-height: 1;
+
+	display: flex;
+	flex-direction: column;
+	height: 100vh; /* Avoid the IE 10-11 `min-height` bug. */
+}
+
+header {
+	background: #125688;
+	padding: 10px 5px;
+	text-align: center;
+}
+
+header h1 {
+	color: #eee;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: 700;
+	line-height: 24px;
+}
+
+header h1 a {
+	color: #eee;
+	text-decoration: none;
+}
+
+header h1 span {
+	font-size: 20px;
+	line-height: 24px;
+	padding-right: 3px;
+}
+
+.site-section {
+	width: 100%;
+	max-width: 500px;
+	padding: 20px;
+	margin: 0 auto;
+
+	flex: 1 0 auto;
+}
+
+.upload-section h3 {
+	width: 100%;
+	margin: 0 0 10px;
+	text-align: center;
+}
+
+.upload-section p.field-input-wrap input.link-input {
+	width: 100%;
+	font-size: 14px;
+	line-height: 20px;
+	padding: 1% 2%;
+	margin: 0 0 10px;
+	text-align: left;
+}
+
+.upload-section p.field-input-wrap.submit-button {
+	text-align: center;
+}
+
+.upload-section p.submit-button button {
+	font-size: 16px;
+	line-height: 24px;
+	cursor: pointer;
+}
+
+.response-section p.message {
+	text-align: center;
+	font-size: 16px;
+	line-height: 20px;
+	margin-bottom: 10px;
+}
+
+.response-section p.message-error {
+	color: #b20000;
+}
+
+.response-section p.image-link {
+	text-align: center;
+	font-size: 14px;
+	line-height: 18px;
+	margin-bottom: 10px;
+}
+
+.response-section p.image-wrap {
+	margin-bottom: 20px;
+}
+
+.response-section p.image-wrap img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+}
+
+.response-section p.return-home {
+	text-align: center;
+	font-size: 13px;
+	line-height: 17px;
+}
+
+.footer {
+	background: #125688;
+	flex-shrink: 0;
+	padding: 10px;
+}
+
+.footer p {
+	text-align: center;
+	margin-bottom: 0;
+	color: #eee;
+	font-size: 14px;
+	line-height: 1;
+}
+
+.footer p a {
+	color: #fff;
+}
+
+
+@media screen and (min-width: 640px) {
+
+	.response-section {
+		max-width: 600px;
+	}
+
+}
+
+
+@media screen and (min-width: 960px) {
+
+	.response-section {
+		max-width: 880px;
+	}
+
+}
+
+
+@media screen and (min-width: 1200px) {
+
+	.response-section {
+		max-width: 1140px;
+	}
+
+}
