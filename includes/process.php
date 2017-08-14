@@ -189,6 +189,9 @@ function metafetch_display_request_response() {
 
 		// Show the actual image.
 		echo '<p class="image-wrap"><img src="' . $image . '"></p>';
+
+		// Show the info about no data.
+		echo '<p class="no-data-info"><strong>Please Note:</strong> No data submitted data is stored whatsoever.</p>';
 	}
 
 	// Add my "return home" link.

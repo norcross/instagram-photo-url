@@ -120,8 +120,11 @@ header h1 span {
 	cursor: pointer;
 }
 
-.response-section p.message {
+.response-section p {
 	text-align: center;
+}
+
+.response-section p.message {
 	font-size: 16px;
 	line-height: 20px;
 	margin-bottom: 10px;
@@ -132,7 +135,6 @@ header h1 span {
 }
 
 .response-section p.image-link {
-	text-align: center;
 	font-size: 14px;
 	line-height: 18px;
 	margin-bottom: 10px;
@@ -149,8 +151,14 @@ header h1 span {
 	margin: 0 auto;
 }
 
+.response-section p.no-data-info {
+	font-style: italic;
+	font-size: 13px;
+	line-height: 17px;
+	margin-bottom: 15px;
+}
+
 .response-section p.return-home {
-	text-align: center;
 	font-size: 13px;
 	line-height: 17px;
 }
