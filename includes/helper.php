@@ -21,6 +21,41 @@ function metafetch_page_url() {
 }
 
 /**
+ * Handle a redirect for result display.
+ *
+ * @param  boolean $success   Whether or not the result was a success.
+ * @param  string  $error     The error code.
+ * @param  string  $imageurl  The image URL (which is only for successful requests).
+ * @param  integer $status    The redirect status code.
+ *
+ * @return void
+ */
+function metafetch_location_redirect( $success = false, $error = '', $imageurl = '', $status = 302 ) {
+
+	// Set my base URL.
+	$link   = metafetch_page_url() . '?imgcheck=1';
+
+	// Build my error redirect link.
+	if ( empty( $success ) ) {
+
+		// Check for the error code.
+		$error  = ! empty( $error ) ? $error : 'unknown';
+
+		// And make the link.
+		$link  .= '&success=0&error=' . trim( $error );
+	}
+
+	// Build my success redirect link.
+	if ( ! empty( $success ) && ! empty( $imageurl ) ) {
+		$link  .= '&success=1&imageurl=' . urlencode( $imageurl );
+	}
+
+	// And do the redirect.
+	header( 'Location: ' . $link, true, $status );
+	die();
+}
+
+/**
  * Determine if I'm on a local environment and load CSS.
  *
  * @return string

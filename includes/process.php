@@ -1,7 +1,7 @@
 <?php
 
 // Set our site version and URL.
-define( 'IGURL_VERS', '0.0.1' );
+define( 'IGURL_VERS', '0.0.2' );
 define( 'IGURL_HOST', 'ig.norcrossadmin.com' );
 
 // Load our helper file.
@@ -17,12 +17,9 @@ metafetch_check_request_types();
  */
 function metafetch_check_request_types() {
 
-	// Set my base URL.
-	$base   = metafetch_page_url() . '?imgcheck=1';
-
 	// If we have our URL flag, run the POST checks.
 	if ( ! empty( $_POST['igurl-flag'] ) ) {
-		metafetch_check_post_request( $base );
+		metafetch_check_post_request();
 	}
 
 	// If we have our image ID or URL, run the GET checks.
@@ -33,35 +30,27 @@ function metafetch_check_request_types() {
 		$image_url  = ! empty( $_GET['image-url'] ) ? $_GET['image-url'] : '';
 
 		// Pass it to our request check.
-		metafetch_check_get_request( $image_id, $image_url, $base );
+		metafetch_check_get_request( $image_id, $image_url );
 	}
 }
 
 /**
  * Look for the post request.
  *
- * @param  string  $base  Our base URL to handle redirects.
- *
  * @return mixed
  */
-function metafetch_check_post_request( $base = '' ) {
+function metafetch_check_post_request() {
 
 	// Redirect without a URL.
 	if ( empty( $_POST['image-url'] ) ) {
-
-		// Create my URL.
-		$redir  = $base . '&success=0&error=nolink';
-
-		// And do the redirect.
-		header( 'Location: ' . $redir, true, 302 );
-		die();
+		metafetch_location_redirect( 0, 'nolink' );
 	}
 
 	// Get our link and sanitize it.
-	$link   = filter_var( $link, FILTER_SANITIZE_URL );
+	$link   = filter_var( $_POST['image-url'], FILTER_SANITIZE_URL );
 
 	// Now handle the request.
-	metafetch_process_request( $link, $base );
+	metafetch_process_request( $link );
 
 	// And finish up.
 	return;
@@ -72,21 +61,14 @@ function metafetch_check_post_request( $base = '' ) {
  *
  * @param  string  $image_id  The ID for the image URL.
  * @param  string  $image_url The entire image URL.
- * @param  string  $base      Our base URL to handle redirects.
  *
  * @return mixed
  */
-function metafetch_check_get_request( $image_id = '', $image_url = '', $base = '' ) {
+function metafetch_check_get_request( $image_id = '', $image_url = '' ) {
 
 	// Bail without our data.
 	if ( empty( $image_id ) && empty( $image_url ) ) {
-
-		// Create my URL.
-		$redir  = $base . '&success=0&error=noinfo';
-
-		// And do the redirect.
-		header( 'Location: ' . $redir, true, 302 );
-		die();
+		metafetch_location_redirect( 0, 'noinfo' );
 	}
 
 	// Set my link based on what we have.
@@ -106,73 +88,38 @@ function metafetch_check_get_request( $image_id = '', $image_url = '', $base = '
  * Process the request with a given URL.
  *
  * @param  string  $link  The URL to get data from.
- * @param  string  $base  Our base URL to handle redirects.
  *
  * @return void
  */
-function metafetch_process_request( $link = '', $base = '' ) {
+function metafetch_process_request( $link = '' ) {
 
 	// Make sure the link itself is valid.
 	if ( filter_var( $link, FILTER_VALIDATE_URL ) === false ) {
-
-		// Create my URL.
-		$redir  = $base . '&success=0&error=badlink';
-
-		// And do the redirect.
-		header( 'Location: ' . $redir, true, 302 );
-		die();
+		metafetch_location_redirect( 0, 'badlink' );
 	}
 
 	// Make sure we have an actual instagram URL.
 	if ( strpos( $link, 'instagram.com' ) === false ) {
-
-		// Create my URL.
-		$redir  = $base . '&success=0&error=wronglink';
-
-		// And do the redirect.
-		header( 'Location: ' . $redir, true, 302 );
-		die();
+		metafetch_location_redirect( 0, 'wronglink' );
 	}
 
 	// Now attempt to get our data.
 	if ( false === $data = metafetch_get_tag_values( $link ) ) {
-
-		// Create my URL.
-		$redir  = $base . '&success=0&error=nodata';
-
-		// And do the redirect.
-		header( 'Location: ' . $redir, true, 302 );
-		die();
+		metafetch_location_redirect( 0, 'nodata' );
 	}
 
 	// If we don't have an actual image URL.
 	if ( empty( $data ) || empty( $data['og:image'] ) ) {
-
-		// Create my URL.
-		$redir  = $base . '&success=0&error=noimage';
-
-		// And do the redirect.
-		header( 'Location: ' . $redir, true, 302 );
-		die();
+		metafetch_location_redirect( 0, 'noimage' );
 	}
 
 	// We have an image. Do that.
 	if ( ! empty( $data['og:image'] ) ) {
-
-		// Create my URL.
-		$redir  = $base . '&success=1&imageurl=' . urlencode( $data['og:image'] );
-
-		// And do the redirect.
-		header( 'Location: ' . $redir, true, 302 );
-		die();
+		metafetch_location_redirect( 1, '', $data['og:image'] );
 	}
 
-	// Create my URL.
-	$redir  = $base . '&success=0&error=unknown';
-
-	// And do the redirect.
-	header( 'Location: ' . $redir, true, 302 );
-	die();
+	// Reached the end, not sure how.
+	metafetch_location_redirect( 0, 'unknown' );
 }
 
 /**
