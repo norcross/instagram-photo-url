@@ -7,7 +7,7 @@ A simple utility to get the raw image URL from an Instagram post
 * [Andrew Norcross](https://github.com/norcross)
 
 ## About
-Pass an Instagram post URL and retrieve the raw image URL from Instagram's CDN. Intended to replace having to screenshot things you want to share or save.
+Pass an Instagram post URL and retrieve the raw image URL from Instagram's CDN. Intended to replace having to screenshot things you want to share or save. An example can be [viewed here](https://ig.norcrossadmin.com/)
 
 ## Current Actions
 * Displays a simple form to enter the Instagram URL and processes via a POST request.
