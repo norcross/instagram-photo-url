@@ -16,6 +16,7 @@ Pass an Instagram post URL and retrieve the raw image URL from Instagram's CDN. 
 ## Examples
 * Passing the image URL: `https://example.com/?image-url=https://www.instagram.com/p/someImageID/`
 * Passing the image ID: `https://example.com/?image-id=someImageID`
+* Browser bookmarklet: `javascript:(function(){window.open('https://example.com/?image-url='+window.location.protocol+'//'+window.location.host+window.location.pathname);})();`
 
 ## Changelog
 
