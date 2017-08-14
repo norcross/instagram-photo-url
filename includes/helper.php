@@ -13,8 +13,11 @@ function metafetch_page_url() {
 	// Now parse it.
 	$parse  = parse_url( $base );
 
-	// Now build it and return it.
-	return $parse['scheme'] . '://' . $parse['host'] . '/';
+	// Set the build URL.
+	$build  = $parse['scheme'] . '://' . $parse['host'];
+
+	// Check for a path (subfolder) and append it before returning.
+	return ! empty( $parse['path'] ) ? $build . $parse['path'] : $build;
 }
 
 /**

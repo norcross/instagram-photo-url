@@ -1,7 +1,7 @@
 <?php
 
 // Set our site version and URL.
-define( 'IGURL_VERS', '0.0.2' );
+define( 'IGURL_VERS', '0.0.3' );
 define( 'IGURL_HOST', 'ig.norcrossadmin.com' );
 
 // Load our helper file.

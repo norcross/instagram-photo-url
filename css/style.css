@@ -47,35 +47,6 @@ html, body {
 /*------------------------------------*\
 	$MAIN
 \*------------------------------------*/
-/* GO! */
-::-webkit-input-placeholder {
-	font-style: italic;
-	color:#777;
-	font-weight: 300;
-	font-size: 18px;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-	font-style: italic;
-	color:#777;
-	font-weight: 300;
-	font-size: 18px;
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-	font-style: italic;
-	color:#777;
-	font-weight: 300;
-	font-size: 18px;
-}
-
-:-ms-input-placeholder {
-	font-style: italic;
-	color:#777;
-	font-weight: 300;
-	font-size: 18px;
-}
-
 small {
 	font-size: 80%;
 }
@@ -206,7 +177,7 @@ header h1 span {
 @media screen and (min-width: 640px) {
 
 	.response-section {
-		max-width: 600px;
+		max-width: 95%;
 	}
 
 }
