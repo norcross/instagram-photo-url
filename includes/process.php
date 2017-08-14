@@ -90,7 +90,7 @@ function metafetch_check_get_request( $image_id = '', $image_url = '', $base = '
 	}
 
 	// Set my link based on what we have.
-	$link   = ! empty( $image_url ) ? $image_url : 'https://www.instagram.com/p/' . $image_id . '/';
+	$link   = ! empty( $image_url ) ? $image_url : 'https://www.instagram.com/p/' . trim( $image_id ) . '/';
 
 	// Get our link and sanitize it.
 	$link   = filter_var( $link, FILTER_SANITIZE_URL );
